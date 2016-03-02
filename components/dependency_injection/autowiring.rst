@@ -1,8 +1,8 @@
 .. index::
     single: DependencyInjection; Autowiring
 
-Defining Services Dependencies Automatically
-============================================
+Defining Services Dependencies Automatically (Auto-wiring)
+==========================================================
 
 .. versionadded:: 2.8
     Support for autowiring services was introduced in Symfony 2.8.
@@ -55,38 +55,38 @@ The DependencyInjection component will be able to automatically register
 the dependencies of this ``TwitterClient`` class when the ``twitter_client``
 service is marked as autowired:
 
-.. configuration-block::
+    .. configuration-block::
 
-    .. code-block:: yaml
-
-        # app/config/services.yml
-        services:
-            twitter_client:
-                class:    'AppBundle\TwitterClient'
-                autowire: true
-
-    .. code-block:: xml
-
-        <!-- app/config/services.xml -->
-        <?xml version="1.0" encoding="UTF-8" ?>
-        <container xmlns="http://symfony.com/schema/dic/services"
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-            <services>
-                <service id="twitter_client" class="AppBundle\TwitterClient" autowire="true" />
+        .. code-block:: yaml
+    
+            # app/config/services.yml
+            services:
+                twitter_client:
+                    class:    'AppBundle\TwitterClient'
+                    autowire: true
+    
+        .. code-block:: xml
+    
+            <!-- app/config/services.xml -->
+            <?xml version="1.0" encoding="UTF-8" ?>
+            <container xmlns="http://symfony.com/schema/dic/services"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    
+                <services>
+                    <service id="twitter_client" class="AppBundle\TwitterClient" autowire="true" />
+                </services>
             </services>
-        </services>
-
-    .. code-block:: php
-
-        use Symfony\Component\DependencyInjection\Definition;
-
-        // ...
-        $definition = new Definition('AppBundle\TwitterClient');
-        $definition->setAutowired(true);
-
-        $container->setDefinition('twitter_client', $definition);
+    
+        .. code-block:: php
+    
+            use Symfony\Component\DependencyInjection\Definition;
+    
+            // ...
+            $definition = new Definition('AppBundle\TwitterClient');
+            $definition->setAutowired(true);
+    
+            $container->setDefinition('twitter_client', $definition);
 
 The autowiring subsystem will detect the dependencies of the ``TwitterClient``
 class by parsing its constructor. For instance it will find here an instance of
