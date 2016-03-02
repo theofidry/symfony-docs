@@ -76,7 +76,7 @@ service is marked as autowired:
             <services>
                 <service id="twitter_client" class="AppBundle\TwitterClient" autowire="true" />
             </services>
-        </services>
+        </container>
 
     .. code-block:: php
 
