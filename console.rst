@@ -516,7 +516,7 @@ console::
             $kernel = self::bootKernel();
             $application = new Application($kernel);
 
-            $command = $application->find('app:create-user');
+            $command = $application->get('app:create-user');
             $commandTester = new CommandTester($command);
             $commandTester->execute([
                 // pass arguments to the helper
